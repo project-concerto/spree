@@ -30,7 +30,7 @@ module Spree
               store: current_store,
               user: spree_current_user,
               token: order_token,
-              currency: current_currency
+              currency: params[:currency] || current_currency
             )
           end
 
