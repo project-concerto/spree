@@ -272,7 +272,11 @@ describe 'API V2 Storefront Products Spec', type: :request do
     context 'without supported currency param' do
       before { get "/api/v2/storefront/products/#{product.slug}?currency=PLN" }
 
-      it_behaves_like 'returns 404 HTTP status'
+      it 'return product with supported currency' do
+        expect(json_response['data']).not_to be []
+        expect(json_response['data']['attributes']['slug']).to eq product.slug
+        expect(json_response['data']['attributes']['currency']).to eq store.default_currency
+      end
     end
 
     context 'with non-existing product' do

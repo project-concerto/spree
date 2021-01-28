@@ -35,7 +35,7 @@ module Spree
 
           def scope
             model_class.
-              available_in_currency(currency: params[:currency] || current_currency).
+              active(current_currency).
               accessible_by(current_ability, :show).
               includes(scope_includes)
           end

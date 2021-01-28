@@ -459,7 +459,7 @@ describe 'API V2 Storefront Cart Spec', type: :request do
           it 'includes the requested currency' do
             get '/api/v2/storefront/cart', headers: headers, params: { currency: 'PLN' }
 
-            expect(json_response['error']).to be_present
+            expect(json_response['data']['attributes']['currency']).to eq store.default_currency
           end
         end
       end
