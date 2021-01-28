@@ -205,6 +205,11 @@ module Spree
       end
       search_scopes << :available
 
+      def self.available_in_currency(currency:)
+        joins(master: :default_price).where(spree_prices: { currency: currency })
+      end
+      search_scopes << :available_in_currency
+
       def self.active(currency = nil)
         available(nil, currency)
       end

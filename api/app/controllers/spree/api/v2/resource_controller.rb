@@ -24,6 +24,7 @@ module Spree
         def serialize_resource(resource)
           resource_serializer.new(
             resource,
+            params: { currency: params[:currency] || current_currency },
             include: resource_includes,
             fields: sparse_fields
           ).serializable_hash

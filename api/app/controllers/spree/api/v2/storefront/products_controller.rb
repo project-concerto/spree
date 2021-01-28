@@ -33,6 +33,13 @@ module Spree
             Spree::Api::Dependencies.storefront_product_serializer.constantize
           end
 
+          def scope
+            model_class.
+              available_in_currency(currency: params[:currency] || current_currency).
+              accessible_by(current_ability, :show).
+              includes(scope_includes)
+          end
+
           def model_class
             Spree::Product
           end
