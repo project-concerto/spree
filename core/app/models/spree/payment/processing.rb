@@ -85,6 +85,7 @@ module Spree
 
       def process_authorization
         started_processing!
+        exit
         gateway_action(source, :authorize, :pend)
       end
 
